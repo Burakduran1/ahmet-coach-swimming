@@ -1,0 +1,251 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Her yaş (çocuk + yetişkin) – sıcak, davetkar, profesyonel */
+  /* Arka plan: hafif krem–mavi, sıcak beyaz */
+  --background: #F8FAFC;
+  /* Metin: koyu mavi, yumuşak */
+  --foreground: #0F172A;
+  --card: #ffffff;
+  --card-foreground: #0F172A;
+  --popover: #ffffff;
+  --popover-foreground: #0F172A;
+  /* Ana renk: dost canlısı mavi #2563EB – güven + neşe */
+  --primary: #2563EB;
+  --primary-foreground: #ffffff;
+  --secondary: #E0F2FE;
+  --secondary-foreground: #0F172A;
+  --muted: #F0F9FF;
+  --muted-foreground: #475569;
+  /* Vurgu: neşeli turuncu #F97316 – dikkat çeken butonlar */
+  --accent: #F97316;
+  --accent-foreground: #ffffff;
+  /* Oyuncul vurgu: soft sarı (rozetler, ikonlar) */
+  --playful: #FBBF24;
+  --playful-foreground: #0F172A;
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: #BAE6FD;
+  --input: #E0F2FE;
+  --ring: #2563EB;
+  --chart-1: #2563EB;
+  --chart-2: #F97316;
+  --chart-3: #0EA5E9;
+  --chart-4: #FBBF24;
+  --chart-5: #0F172A;
+  /* Yumuşak, davetkar: yuvarlak köşeler */
+  --radius: 1rem;
+  /* Yumuşak gölgeler */
+  --button-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  --button-shadow-accent: 0 4px 14px rgba(249, 115, 22, 0.3);
+  --card-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+
+  --glow: #2563EB;
+  --deep-ocean: #1D4ED8;
+  --pool-water: #38BDF8;
+  --shimmer: #7DD3FC;
+}
+
+.dark {
+  /* Koyu mod (ileride gerekirse) */
+  --background: oklch(0.14 0.02 264);
+  --foreground: oklch(0.96 0.005 264);
+  --card: oklch(0.18 0.02 264);
+  --card-foreground: oklch(0.96 0.005 264);
+  --popover: oklch(0.18 0.02 264);
+  --popover-foreground: oklch(0.96 0.005 264);
+  --primary: oklch(0.65 0.2 250);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.24 0.02 264);
+  --secondary-foreground: oklch(0.94 0.01 264);
+  --muted: oklch(0.26 0.02 264);
+  --muted-foreground: oklch(0.65 0.02 264);
+  --accent: oklch(0.28 0.02 264);
+  --accent-foreground: oklch(0.96 0.005 264);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.32 0.02 264);
+  --input: oklch(0.24 0.02 264);
+  --ring: oklch(0.65 0.2 250);
+}
+
+@theme inline {
+  --font-sans: var(--font-montserrat), 'Montserrat', system-ui, sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-glow: var(--glow);
+  --color-deep-ocean: var(--deep-ocean);
+  --color-pool-water: var(--pool-water);
+  --color-shimmer: var(--shimmer);
+  --color-playful: var(--playful);
+  --color-playful-foreground: var(--playful-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --shadow-premium: 0 2px 8px rgba(43, 108, 176, 0.18);
+  --color-shadow-soft: rgba(15, 23, 42, 0.08);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Glassmorphism – buzlu cam, hafif mavi su üzerinde */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--pool-water), var(--shimmer));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect – safir mavi tonunda */
+.glow {
+  box-shadow: 0 0 40px rgba(43, 108, 176, 0.2),
+              0 0 80px rgba(43, 108, 176, 0.1),
+              0 0 120px rgba(43, 108, 176, 0.05);
+}
+
+/* Ripple animation for WhatsApp button */
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 2s ease-out infinite;
+}
+
+.animate-ripple-delay-1 {
+  animation: ripple 2s ease-out infinite 0.5s;
+}
+
+.animate-ripple-delay-2 {
+  animation: ripple 2s ease-out infinite 1s;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Bounce animation for scroll indicator */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* Oyuncul: zıplayan buton hissi */
+@keyframes bounce-in {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 2s ease-in-out infinite;
+}
+
+/* Yüzen baloncuklar (hero) */
+@keyframes float-bubble {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translateY(-20px) translateX(8px) scale(1.05);
+    opacity: 0.8;
+  }
+  66% {
+    transform: translateY(-10px) translateX(-5px) scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+.animate-float-bubble {
+  animation: float-bubble 4s ease-in-out infinite;
+}
