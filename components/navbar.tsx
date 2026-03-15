@@ -3,56 +3,15 @@
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
-
-/** Animasyonlu can simidi – header logosu */
-function LifebuoyLogo({ className }: { className?: string }) {
-  return (
-    <motion.div
-      className={`relative flex h-10 w-10 items-center justify-center ${className ?? ""}`}
-      animate={{
-        y: [0, -4, 0],
-        rotate: [0, 2, -2, 0],
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    >
-      <div
-        className="absolute inset-0 rounded-full"
-        style={{
-          background: "linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FF6B6B 100%)",
-          boxShadow: "0 4px 16px rgba(255, 107, 107, 0.35), inset 0 2px 8px rgba(255,255,255,0.4)",
-        }}
-      >
-        {[0, 45, 90, 135].map((deg) => (
-          <div
-            key={deg}
-            className="absolute left-1/2 top-0 h-full w-1.5 -translate-x-1/2 bg-white/50"
-            style={{ transform: `translateX(-50%) rotate(${deg}deg)` }}
-          />
-        ))}
-        <div
-          className="absolute inset-0 rounded-full"
-          style={{
-            background: "radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.5) 0%, transparent 50%)",
-          }}
-        />
-      </div>
-      <div
-        className="absolute h-4 w-4 rounded-full bg-white/90 shadow-inner"
-        style={{ boxShadow: "inset 0 1px 3px rgba(0,0,0,0.1)" }}
-      />
-    </motion.div>
-  )
-}
+import { CONTACT } from "@/lib/contact"
+import { LifebuoyLogo } from "@/components/brand-logo"
 
 const navLinks = [
   { href: "#hakkimda", label: "Hakkımda" },
   { href: "#egitimler", label: "Eğitimler" },
   { href: "#galeri", label: "Galeri" },
   { href: "#yorumlar", label: "Yorumlar" },
+  { href: "#sss", label: "SSS" },
   { href: "#mini-oyun", label: "Mini oyun" },
   { href: "#iletisim", label: "İletişim" },
 ]
@@ -86,10 +45,11 @@ export function Navbar() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              title="Ahmet Swim - İzmir Yüzme Dersi"
             >
               <LifebuoyLogo />
               <span className="font-serif text-xl font-bold text-foreground">
-                Ahmet
+                Ahmet Swim
               </span>
             </motion.a>
 
@@ -119,7 +79,7 @@ export function Navbar() {
 
             {/* CTA Button */}
             <motion.a
-              href="https://wa.me/905551234567"
+              href={CONTACT.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden rounded-2xl bg-accent px-6 py-2.5 text-sm font-bold text-accent-foreground shadow-[var(--button-shadow-accent)] transition-shadow hover:shadow-lg md:block"
@@ -178,7 +138,7 @@ export function Navbar() {
               </motion.a>
             ))}
             <motion.a
-              href="https://wa.me/905551234567"
+              href={CONTACT.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 rounded-2xl bg-accent px-6 py-3 text-center text-sm font-bold text-accent-foreground"

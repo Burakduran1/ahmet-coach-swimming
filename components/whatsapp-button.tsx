@@ -2,9 +2,7 @@
 
   import { useState, useCallback } from "react"
   import { motion } from "framer-motion"
-
-  const WA_URL =
-    "https://wa.me/905551234567?text=Merhaba,%20yüzme%20dersleri%20hakkında%20bilgi%20almak%20istiyorum."
+  import { CONTACT } from "@/lib/contact"
 
   /** Resmi WhatsApp logosu (telefon + konuşma balonu) */
   function WhatsAppIcon({ className }: { className?: string }) {
@@ -20,14 +18,14 @@
     )
   }
 
-  export function WhatsAppButton() {
+  export function WhatsAppButton({ embedded }: { embedded?: boolean }) {
     const [tapped, setTapped] = useState(false)
 
     const handleClick = useCallback(() => {
       setTapped(true)
       setTimeout(() => setTapped(false), 550)
       setTimeout(() => {
-        window.open(WA_URL, "_blank", "noopener,noreferrer")
+        window.open(CONTACT.whatsapp, "_blank", "noopener,noreferrer")
       }, 480)
     }, [])
 
@@ -38,11 +36,11 @@
         aria-label="WhatsApp ile iletişime geç"
         onClick={handleClick}
         onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), handleClick())}
-        className="group fixed bottom-6 right-6 z-50 cursor-pointer"
+        className={`group cursor-pointer ${embedded ? "relative origin-bottom-right scale-[0.72]" : "fixed bottom-6 right-6 z-50"}`}
         initial={{ scale: 0, opacity: 0, rotate: -20 }}
         animate={{ scale: 1, opacity: 1, rotate: 0 }}
         transition={{ delay: 2, type: "spring", stiffness: 200, damping: 15 }}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: embedded ? 1.08 : 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
         {/* Water Ripples */}

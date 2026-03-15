@@ -1,18 +1,47 @@
 import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/hero-section"
 import { Navbar } from "@/components/navbar"
-import { LiquidScrollTube } from "@/components/liquid-scroll-tube"
-import { AboutSection } from "@/components/about-section"
-import { BentoSection } from "@/components/bento-section"
-import { GallerySection } from "@/components/gallery-section"
-import { StatsSection } from "@/components/stats-section"
-import { ReviewsSection } from "@/components/reviews-section"
 import { FooterSection } from "@/components/footer-section"
-import { WhatsAppButton } from "@/components/whatsapp-button"
+import { ContactFloatingWidget } from "@/components/contact-floating-widget"
+
+const LiquidScrollTube = dynamic(
+  () => import("@/components/liquid-scroll-tube").then((m) => ({ default: m.LiquidScrollTube })),
+  { ssr: true }
+)
+
+const AboutSection = dynamic(
+  () => import("@/components/about-section").then((m) => ({ default: m.AboutSection })),
+  { ssr: true }
+)
+
+const BentoSection = dynamic(
+  () => import("@/components/bento-section").then((m) => ({ default: m.BentoSection })),
+  { ssr: true }
+)
+
+const GallerySection = dynamic(
+  () => import("@/components/gallery-section").then((m) => ({ default: m.GallerySection })),
+  { ssr: true }
+)
+
+const StatsSection = dynamic(
+  () => import("@/components/stats-section").then((m) => ({ default: m.StatsSection })),
+  { ssr: true }
+)
+
+const ReviewsSection = dynamic(
+  () => import("@/components/reviews-section").then((m) => ({ default: m.ReviewsSection })),
+  { ssr: true }
+)
 
 const ReactionGame = dynamic(
   () => import("@/components/reaction-game").then((m) => ({ default: m.ReactionGame })),
   { ssr: true, loading: () => <section id="mini-oyun" className="min-h-[40vh] py-16" /> }
+)
+
+const FAQSection = dynamic(
+  () => import("@/components/faq-section").then((m) => ({ default: m.FAQSection })),
+  { ssr: true }
 )
 
 export default function Home() {
@@ -27,8 +56,9 @@ export default function Home() {
       <StatsSection />
       <ReviewsSection />
       <ReactionGame />
+      <FAQSection />
       <FooterSection />
-      <WhatsAppButton />
+      <ContactFloatingWidget />
     </main>
   )
 }

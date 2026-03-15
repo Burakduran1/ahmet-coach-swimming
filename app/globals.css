@@ -249,3 +249,16 @@
 .animate-float-bubble {
   animation: float-bubble 4s ease-in-out infinite;
 }
+
+/* Performans: Animasyonları azalt - tercih eden kullanıcılar için */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-bubble,
+  .animate-float,
+  .animate-bounce-slow,
+  .animate-bounce-in,
+  .animate-ripple,
+  .animate-ripple-delay-1,
+  .animate-ripple-delay-2 {
+    animation: none !important;
+  }
+}

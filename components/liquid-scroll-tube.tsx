@@ -87,19 +87,21 @@ function OctopusBuddy({ waterLevel }: { waterLevel: number }) {
         <ellipse cx="18" cy="18" rx="4" ry="5" fill="white" />
         <ellipse cx="30" cy="18" rx="4" ry="5" fill="white" />
         
-        {/* Goz bebekleri - su seviyesine gore degisir */}
+        {/* Goz bebekleri - su seviyesine gore degisir (cy string olmali, undefined DOM hatasi onlenir) */}
         <motion.circle
           cx="18"
-          cy={isWorried ? 20 : 18}
+          cy={String(isWorried ? 20 : 18)}
           r="2"
           fill="#0F172A"
+          initial={{ cy: isWorried ? 20 : 18 }}
           animate={isWorried ? { cy: [20, 19, 20] } : {}}
         />
         <motion.circle
           cx="30"
-          cy={isWorried ? 20 : 18}
+          cy={String(isWorried ? 20 : 18)}
           r="2"
           fill="#0F172A"
+          initial={{ cy: isWorried ? 20 : 18 }}
           animate={isWorried ? { cy: [20, 19, 20] } : {}}
         />
         
@@ -133,26 +135,27 @@ function OctopusBuddy({ waterLevel }: { waterLevel: number }) {
         {/* Tentakuller */}
         {[0, 1, 2, 3, 4, 5].map((i) => {
           const baseX = 8 + i * 7
-          const isOuter = i === 0 || i === 5
+          const pathD = `M${baseX} 30 Q${baseX + (i < 3 ? -3 : 3)} 42 ${baseX + (i < 3 ? -5 : 5)} 52`
           return (
             <motion.path
               key={i}
-              d={`M${baseX} 30 Q${baseX + (i < 3 ? -3 : 3)} 42 ${baseX + (i < 3 ? -5 : 5)} 52`}
+              d={pathD}
               stroke="#E879F9"
               strokeWidth="4"
               strokeLinecap="round"
               fill="none"
+              initial={{ d: pathD }}
               animate={isWorried ? {
                 d: [
-                  `M${baseX} 30 Q${baseX + (i < 3 ? -3 : 3)} 42 ${baseX + (i < 3 ? -5 : 5)} 52`,
+                  pathD,
                   `M${baseX} 30 Q${baseX + (i < 3 ? -6 : 6)} 40 ${baseX + (i < 3 ? -8 : 8)} 50`,
-                  `M${baseX} 30 Q${baseX + (i < 3 ? -3 : 3)} 42 ${baseX + (i < 3 ? -5 : 5)} 52`,
+                  pathD,
                 ]
               } : isVeryHappy ? {
                 d: [
-                  `M${baseX} 30 Q${baseX + (i < 3 ? -3 : 3)} 42 ${baseX + (i < 3 ? -5 : 5)} 52`,
+                  pathD,
                   `M${baseX} 30 Q${baseX + (i < 3 ? 2 : -2)} 44 ${baseX + (i < 3 ? -2 : 2)} 54`,
-                  `M${baseX} 30 Q${baseX + (i < 3 ? -3 : 3)} 42 ${baseX + (i < 3 ? -5 : 5)} 52`,
+                  pathD,
                 ]
               } : {}}
               transition={{

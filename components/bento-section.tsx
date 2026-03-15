@@ -2,13 +2,14 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useRef, useState } from "react"
-import { Baby, Users, Trophy, Droplets, Clock, Star } from "lucide-react"
+import Image from "next/image"
+import { Baby, Users, Trophy, Droplets, Star } from "lucide-react"
 
 const courses = [
   {
     id: 1,
-    title: "Çocuk Yüzme",
-    description: "4-12 yaş grubu için eğlenceli ve güvenli yüzme eğitimi",
+    title: "Çocuklar İçin Yüzme Eğitimi",
+    description: "Çocukların suya alışmasını, doğru yüzme tekniklerini öğrenmesini ve yüzmeden keyif almasını sağlayan eğlenceli ve güvenli eğitim programları.",
     icon: Baby,
     image: "https://images.unsplash.com/photo-1560090995-01632a28895b?w=800&q=80",
     features: ["Su korkusu terapisi", "Temel teknikler", "Oyunla öğrenme"],
@@ -16,8 +17,8 @@ const courses = [
   },
   {
     id: 2,
-    title: "Yetişkin Başlangıç",
-    description: "Hiç yüzme bilmeyenler için özel program",
+    title: "Yetişkinler İçin Yüzme Eğitimi",
+    description: "Daha önce yüzme öğrenme fırsatı bulamamış ya da tekniğini geliştirmek isteyen yetişkinler için özel eğitim programları.",
     icon: Users,
     image: "https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?w=800&q=80",
     features: ["Bireysel tempo", "Güven oluşturma"],
@@ -25,29 +26,20 @@ const courses = [
   },
   {
     id: 3,
-    title: "Performans",
-    description: "Yarışma ve profesyonel seviye eğitimi",
-    icon: Trophy,
-    image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&q=80",
-    features: ["Teknik analiz", "Kondisyon"],
+    title: "Birebir Özel Yüzme Dersi",
+    description: "Kişiye özel planlanan birebir derslerle daha hızlı ve verimli bir öğrenme süreci sağlanır.",
+    icon: Star,
+    image: "https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=800&q=80",
+    features: ["Esnek program", "Hızlı ilerleme"],
     span: "lg:col-span-1 lg:row-span-1",
   },
   {
     id: 4,
-    title: "Aqua Fitness",
-    description: "Su içinde fitness ve rehabilitasyon",
-    icon: Droplets,
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
-    features: ["Düşük etki", "Tüm kaslar"],
-    span: "lg:col-span-1 lg:row-span-1",
-  },
-  {
-    id: 5,
-    title: "Özel Ders",
-    description: "Birebir kişiselleştirilmiş eğitim seansları",
-    icon: Star,
-    image: "https://images.unsplash.com/photo-1519315901367-f34ff9154487?w=800&q=80",
-    features: ["Esnek program", "Hızlı ilerleme"],
+    title: "Grup Yüzme Dersleri",
+    description: "Benzer seviyedeki öğrencilerle yapılan grup dersleri sayesinde hem sosyal hem de motivasyonu yüksek bir eğitim ortamı oluşturulur.",
+    icon: Trophy,
+    image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&q=80",
+    features: ["Sosyal ortam", "Motivasyon"],
     span: "lg:col-span-1 lg:row-span-1",
   },
 ]
@@ -116,12 +108,13 @@ function BentoCard({
         animate={{ scale: isHovered ? 1.05 : 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <img
+        <Image
           src={course.image}
           alt={course.title}
-          className="h-full w-full object-cover"
+          fill
+          className="object-cover"
           loading="lazy"
-          decoding="async"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
       </motion.div>
@@ -182,11 +175,6 @@ function BentoCard({
         />
       </div>
 
-      {/* Duration Badge */}
-      <div className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-background/90 px-3 py-1.5 shadow-sm backdrop-blur-sm">
-        <Clock className="h-3.5 w-3.5 text-primary" />
-        <span className="text-xs font-medium text-foreground">45-60 dk</span>
-      </div>
       {/* Çocuk Yüzme kartında "En çok tercih" rozeti */}
       {course.id === 1 && (
         <motion.div
@@ -228,7 +216,7 @@ export function BentoSection() {
             <span className="text-gradient">Eğitim Programları</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            Çocuk ve yetişkin gruplarına göre güvenli, eğlenceli ve kişiye özel yüzme dersleri
+            İzmir yüzme kursu: çocuk yüzme dersi, yetişkin yüzme dersi, su korkusu programı. Buca ve Bornova&apos;da güvenli, eğlenceli ve kişiye özel yüzme eğitimi.
           </p>
         </motion.div>
 

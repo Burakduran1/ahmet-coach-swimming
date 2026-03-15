@@ -8,7 +8,7 @@ const PROGRESS_PER_TAP = 5
 const COMBO_WINDOW_MS = 500
 const COMBO_BONUS = 2
 const WA_URL =
-  "https://wa.me/905551234567?text=Merhaba,%20ilk%20yüzme%20dersimi%20ayırtmak%20istiyorum."
+  "https://wa.me/905303244052?text=Merhaba,%20ilk%20yüzme%20dersimi%20ayırtmak%20istiyorum."
 
 /** Referans görsele uygun: sarı simit içinde sarı ördek */
 function DuckInRing({ className, lunge }: { className?: string; lunge: boolean }) {

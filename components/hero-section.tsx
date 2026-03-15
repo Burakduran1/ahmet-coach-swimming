@@ -19,14 +19,14 @@ export function HeroSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", damping: 14, stiffness: 80 },
+      transition: { type: "spring" as const, damping: 14, stiffness: 80 },
     },
   }
 
   return (
     <section
       ref={ref}
-      className="relative h-screen w-full overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden"
     >
       {/* Video Background with Parallax */}
       <motion.div
@@ -40,7 +40,7 @@ export function HeroSection() {
           playsInline
           preload="metadata"
           className="h-full w-full object-cover"
-          poster="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=70"
+          poster="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&q=75"
           aria-hidden
         >
           <source
@@ -95,22 +95,19 @@ export function HeroSection() {
                 transition: { staggerChildren: 0.08, delayChildren: 0.15 },
               },
             }}
-            className="text-center font-serif text-5xl font-bold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl"
+            className="text-center font-serif text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
             <span className="block text-gradient">
               <motion.span variants={wordVariants} className="inline-block">
-                Suyu
+                Yüzmeyi
               </motion.span>{" "}
               <motion.span variants={wordVariants} className="inline-block">
-                Hisset
+                Güvenle
               </motion.span>
             </span>
             <span className="mt-2 block text-foreground/90">
               <motion.span variants={wordVariants} className="inline-block">
-                Sınırlarını
-              </motion.span>{" "}
-              <motion.span variants={wordVariants} className="inline-block">
-                Aş
+                Öğrenin
               </motion.span>
             </span>
           </motion.h1>
@@ -118,18 +115,18 @@ export function HeroSection() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="mx-auto mt-8 max-w-xl text-center text-lg text-muted-foreground sm:text-xl"
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="mx-auto max-w-xl text-center text-base text-foreground/90 sm:text-lg [text-shadow:0_1px_2px_rgba(0,0,0,0.15)]"
           >
-            Çocuklar ve yetişkinler için güvenli, eğlenceli ve kişiye özel yüzme dersleri. Her yaşta suyu sevmek, güvenle yüzmek mümkün.
+            İzmir yüzme kursu kapsamında Buca ve Bornova&apos;da çocuk yüzme dersi, yetişkin yüzme dersi, su korkusu programı sunuyorum. Birebir özel yüzme dersi ve grup yüzme dersi ile her yaş grubuna uygun programlarla öğrencilerimin suyla güvenli bir bağ kurmasını ve yüzmeyi doğru tekniklerle öğrenmesini hedefliyorum.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
-        >
+            transition={{ delay: 0.9, duration: 0.5 }}
+            className="flex shrink-0 flex-col items-center gap-3 sm:flex-row"
+          >
           <motion.a
             href="#egitimler"
             aria-label="Eğitim programlarını görüntüle"
@@ -160,12 +157,12 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Alt bant: sadece scroll göstergesi – butonların altında, her zaman görünür */}
+        {/* Alt bant: scroll göstergesi */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.2, duration: 0.8 }}
-          className="flex flex-shrink-0 justify-center pb-6 pt-4 sm:pb-8"
+          className="flex shrink-0 justify-center py-4 sm:py-6"
         >
           <motion.a
             href="#hakkimda"
